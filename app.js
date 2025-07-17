@@ -1,15 +1,15 @@
 import express from "express";
 import { middleware, Client } from "@line/bot-sdk";
 
-// LINE Bot設定
 const config = {
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.LINE_CHANNEL_SECRET
 };
 
-const client = new Client(config);
 const app = express();
+const lineClient = new Client(config);
 
+// LINE webhook middleware
 app.post("/webhook", middleware(config), (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
@@ -21,17 +21,18 @@ app.post("/webhook", middleware(config), (req, res) => {
 
 function handleEvent(event) {
   if (event.type !== "message" || event.message.type !== "text") {
+    // ignore non-text-message event
     return Promise.resolve(null);
   }
 
-  return client.replyMessage(event.replyToken, {
-    type: "text",
-    text: `受け取ったメッセージ: ${event.message.text}`
-  });
+  // create a echoing text message
+  const echo = { type: "text", text: event.message.text };
+
+  // use reply API
+  return lineClient.replyMessage(event.replyToken, echo);
 }
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
-
