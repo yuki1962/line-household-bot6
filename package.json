@@ -1,19 +1,15 @@
-
 {
   "name": "line-household-bot",
   "version": "1.0.0",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
+    "@line/bot-sdk": "^7.5.1",
     "@google-cloud/vision": "^4.4.0",
-    "axios": "^1.6.0",
     "express": "^4.18.2",
-    "multer": "^1.4.5"
+    "body-parser": "^1.20.2"
   }
-}
-"scripts": {
-  "preinstall": "npm config set registry https://registry.npmjs.org/",
-  "start": "node app.js"
 }
