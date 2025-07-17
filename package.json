@@ -1,14 +1,14 @@
 {
   "name": "line-household-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "LINE household bot with Vision API",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.5.1",
-    "@google-cloud/vision": "^3.3.0",
+    "@google-cloud/vision": "3.3.0",
     "express": "^4.18.2",
     "body-parser": "^1.20.2"
   }
