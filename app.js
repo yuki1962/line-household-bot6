@@ -3,8 +3,8 @@ import { middleware, Client } from "@line/bot-sdk";
 
 // LINE Bot設定
 const config = {
-  channelAccessToken: MF0W2sLvZHnGzYqC1TrKLCZUCtT/LJYO7jxuJyxa0PPXIKM8YW+dadnCzMoxNXowssHnRWEdFglFrKQ5vyvRqggxQtLbkrQUot/vLY3Uf5VKGGK/Oh/plIg5sHLs6aA/vKshB8q/kr0e/AcIHl/9iwdB04t89/1O/w1cDnyilFU=,
-  channelSecret: 5949cf8058d952e0770bd4c808a26600
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET
 };
 
 const client = new Client(config);
