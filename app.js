@@ -2,12 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import { Client } from "@line/bot-sdk";
 import multer from "multer";
-import fs from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
