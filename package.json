@@ -11,7 +11,7 @@
     "axios": "^1.7.2",
     "dotenv": "^16.4.1",
     "express": "^4.19.2",
-    "line-bot-sdk": "^7.4.0",
+    "line-bot-sdk": "^7.3.0",
     "multer": "^2.0.1",
     "multer-cloud-storage": "^4.1.0"
   },
