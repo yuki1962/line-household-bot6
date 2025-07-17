@@ -13,3 +13,7 @@
     "multer": "^1.4.5"
   }
 }
+"scripts": {
+  "preinstall": "npm config set registry https://registry.npmjs.org/",
+  "start": "node app.js"
+}
