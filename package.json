@@ -1,5 +1,5 @@
 {
-  "name": "line-household-bot",
+  "name": "line-household-bot6",
   "version": "1.0.0",
   "description": "A LINE bot for household accounting with Google Vision API support.",
   "main": "app.js",
