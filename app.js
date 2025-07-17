@@ -1,3 +1,4 @@
+// app.js (完全修正版)
 import express from "express";
 import { middleware, Client } from "@line/bot-sdk";
 
@@ -11,25 +12,24 @@ const lineClient = new Client(config);
 
 // LINE webhook middleware
 app.post("/webhook", middleware(config), (req, res) => {
-  Promise.all(req.body.events.map(handleEvent))
-    .then((result) => res.json(result))
-    .catch((err) => {
+  // 👇 先にHTTP 200を返すことでLINEのタイムアウトを防ぐ
+  res.status(200).send("OK");
+
+  req.body.events.map(async (event) => {
+    try {
+      await handleEvent(event);
+    } catch (err) {
       console.error(err);
-      res.status(500).end();
-    });
+    }
+  });
 });
 
-function handleEvent(event) {
+async function handleEvent(event) {
   if (event.type !== "message" || event.message.type !== "text") {
-    // ignore non-text-message event
-    return Promise.resolve(null);
+    return;
   }
-
-  // create a echoing text message
-  const echo = { type: "text", text: event.message.text };
-
-  // use reply API
-  return lineClient.replyMessage(event.replyToken, echo);
+  const echo = { type: "text", text: `Echo: ${event.message.text}` };
+  await lineClient.replyMessage(event.replyToken, echo);
 }
 
 const PORT = process.env.PORT || 3000;
